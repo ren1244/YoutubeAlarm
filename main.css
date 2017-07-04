@@ -1,0 +1,158 @@
+.container{
+	display:inline-block;
+	text-align:center;
+	margin:0px;
+	min-height:600px;
+	vertical-align:top;
+	padding-top:10px;
+	
+}
+.main_title{
+	font-size:1.2em;
+	font-weight:bold;
+}
+#alarm,#youtube,#music,#recent{
+	display:inline-block;
+	text-align:left;
+	margin:2px;
+}
+#alarm{
+	width:250px;
+}
+#youtube{
+	width:520px;
+}
+#music{
+	width:200px;
+}
+#recent{
+	width:200px;
+}
+/*media list 設定*/
+.MediaDiv
+{
+	position:relative;
+	padding-left:20px;
+	margin-bottom:20px;
+}
+.MediaContent
+{
+	vertical-align:top;
+	display:inline-block;
+}
+.MediaControl{
+	display:inline-block;
+	visibility:hidden;
+	position:absolute;
+	top:0;
+}
+.MediaDiv:hover .MediaControl{
+	display:inline-block;
+	visibility:visible;
+	position:absolute;
+	top:0;
+}
+/*media list:youtube 設定*/
+/*media list:music 設定*/
+.MusicTitle{
+	margin-top:0.25em;
+	margin-bottom:0.25em;
+	padding:0;
+	width:150px;
+	overflow:hidden;
+	display:block;
+	white-space: nowrap;
+}
+#music .MediaDiv{
+	margin-bottom:0px;
+}
+#music .MediaContent audio{
+	display:none;
+	position:absolute;
+}
+#music .MediaDiv:hover .MusicTitle{
+	color:blue;
+	cursor:default;
+}
+#music .MediaDiv:hover .MediaContent audio{
+	position:absolute;
+	left:0px;
+	display:inline-block;
+	z-index:100;
+}
+#music .MediaDiv:hover .MediaControl{
+	width:50px;
+	z-index:100;
+}
+
+/*alarm 設定
+#alarm{
+	min-height:300px;
+	border:1px solid black;
+	border-radius:5px;
+}*/
+.AlarmDiv{
+	position:relative;
+}
+.alarm_time{
+	margin-right:1em;
+	color:blue;
+	display:inline-block;
+	vertical-align:middle;
+}
+.alarm_title{
+	width:150px;
+	width:150px;
+	overflow:hidden;
+	display:inline-block;
+	white-space: nowrap;
+	vertical-align:middle;
+}
+.AlarmContent{
+	display:inline-block;
+}
+.AlarmCtrl{
+	display:inline-block;
+	position:absolute;
+	right:0px;
+	top:0px;
+}
+
+/**/
+.recentTitle{
+	font-size:10.5pt;
+	margin-right:1em;
+	line-height:1.75em;
+	margin-top:0.5em;
+}
+.recentTitle:hover{
+	cursor:pointer;
+	color:blue;
+}
+#YTinput{
+	margin:0.5em 0em;
+}
+.main_area
+{
+	display:inline-block;
+	background-color:white;
+}
+body{
+background-color:lightgray;
+}
+.bookmargin{
+	background-color:lightyellow;
+}
+/*
+#dialog{
+	display:block;
+	padding:5px;
+	position:fixed;
+	bottom:0px;
+	background-color:white;
+}
+#dialog_blank{
+	display:block;
+	height:30px;
+}
+*/

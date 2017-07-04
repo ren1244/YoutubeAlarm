@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+ <title>Mobile-Web-App: HTML file</title>
+ 
+<script>
+function fileSelected(filelist){
+ 
+ var fileinfo = 
+  "<p>File name: " + filelist.files[0].name + "</p>" +
+  "<p>File size: " + filelist.files[0].size + "</p>" +
+  "<p>File type: " + filelist.files[0].type + "</p>"; 
+   
+    document.getElementById("result").innerHTML = fileinfo;
+    document.getElementById("audiosource").setAttribute("src", filelist.files[0].name);
+}
+</script> 
+  
+</head>
+<body>
+ 
+<p>
+<audio controls="controls" id="audiosource">
+  <source type="audio/mp3"  />
+Your browser does not support the audio element.
+</audio>
+</p>
+<p>
+<input id="fileinput" type="file" name="filechooser" size="10" accept="audio/*" onchange="fileSelected(this)"></input>
+</p>
+<p id="result"></p>
+ 
+</body>
+</html>
