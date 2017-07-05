@@ -70,6 +70,7 @@ function mediaList_AddAlarm(id)
 {
 	var target=document .getElementById(id);
 	var obj=target.parentNode.refMediaList;
-	obj.fAddAlarm(id+"_media");
+	if(obj.fAddAlarm)
+		obj.fAddAlarm(id+"_media");
 }
 

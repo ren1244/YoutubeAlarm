@@ -8,6 +8,10 @@ function initYTDiv()
 		"icons/ic_delete_forever_black_24px.svg",
 		createYT,DelYT,appYTAlarm);
 }
+function enableYTAddAlarm()
+{
+	listYoutube.fAddAlarm=appYTAlarm;
+}
 function createYT(cid,vid)
 {
 	var player=new YT.Player(cid,{
@@ -42,7 +46,7 @@ function onPlayerStateChange(e)
 		e.target.seekTo(0);
 		reportRecent(vid,true,e.target.getVideoData().title);
 	}
-	else if(e.data==-1)
+	else if(e.data==-1 && AutoEnable)
 	{
 		mediaList_removeMedia(e.target.getIframe().parentNode.id);
 		reportRecent(vid,false,"");
@@ -55,6 +59,11 @@ function DelYT(cid)
 }
 function appYTAlarm(cid)
 {
+	if(!AutoEnable)
+	{
+		alert("無法設定鬧鐘，您的瀏覽器可能禁用了自動撥放！");
+		return;
+	}
 	var p=YT.get(cid);
 	timeDialog(function (dat,player){
 		listAlarm.appendAlarm(dat,
