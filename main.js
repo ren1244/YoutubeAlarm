@@ -54,14 +54,14 @@ function init()
 }
 function doResize()
 {
-	var cc=document .getElementsByClassName("container");
+	/*var cc=document .getElementsByClassName("container");
 	var w=cc[0].parentNode.clientWidth
 		-cc[0].offsetWidth
 		-cc[2].offsetWidth
 		-cc[3].offsetWidth-570;
 	cc[1] .setAttribute("style","width:"+(500+(w>0?w:0))+"px");
 	var dd=document .getElementById("YTinput").children;
-	dd[0].setAttribute("style","width:"+(cc[1].clientWidth-dd[1].offsetWidth-200)+"px");
+	dd[0].setAttribute("style","width:"+(cc[1].clientWidth-dd[1].offsetWidth-200)+"px");*/
 }
 
 function appAlarm(cid)

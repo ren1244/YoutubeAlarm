@@ -17,16 +17,17 @@
 	<!--<div id="dialog">
 		<button onclick="loadFromFile(this)">從檔案</button>
 	</div>	-->
-	<div class="container">
+	<div id='page'><!--
+	--><div id='leftbar' class="container">
 		<div id='svg_clock'></div>
 		<span class='main_title'>我的鬧鐘</span><br>
 		<div id="alarm"></div>
-	</div>
-	<div class="main_area">
-		<div class="container"><div><span class='main_title'>youtube頻道</span></div><div id='YTinput'><input type="text"><button onclick="loadFromYT(this)">匯入</button></div><br><div id="youtube"></div></div>
-		<div class="container bookmargin"><span class='main_title' id="mus_hint">我的音樂<br><span style="font-size:10pt;color:gray">拖曳 mp3,wma 至此</span></span><br><div id="music"></div></div>
-	</div>
-	<div class="container"><span class='main_title'>最新點選</span><br><ul id="recent"></ul></div>
-	<div id="dialog_blank">
+	</div><!--
+	--><div id='centerArea'class="main_area"><!--
+		--><div id="YT_container" class="container"><div><span class='main_title'>youtube頻道</span></div><div id='YTinput'><input type="text"><button onclick="loadFromYT(this)">匯入</button></div><br><div id="youtube"></div></div><!--
+		--><div id="Mus_container" class="container bookmargin"><span class='main_title' id="mus_hint">我的音樂<br><span style="font-size:10pt;color:gray">拖曳 mp3,wma 至此</span></span><br><div id="music"></div></div><!--
+	--></div><!--
+	--><div id='rightbar' class="container"><span class='main_title'>最新點選</span><br><ul id="recent"></ul></div><!--
+	--></div>
 </body>
 </html>
