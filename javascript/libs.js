@@ -100,15 +100,4 @@ function timeDialog(cbk,parameter)
 		d.setDate(d.getDate()+1);
 	
 	cbk(d,parameter);
-	/*
-	if(cid.slice(0,3)=="you")
-	{
-		var tit=YT.get(cid).getVideoData().title;
-		listAlarm.appendAlarm(d,tit,YTplayById(cid));
-	}
-	if(cid.slice(0,3)=="mus")
-	{
-		var tit=document .getElementById(cid).children[0].innerHTML;
-		listAlarm.appendAlarm(d,tit,MusplayById(cid));
-	}*/
 }

@@ -6,7 +6,8 @@ function initYTDiv()
 		"youtube",
 		"icons/ic_alarm_add_black_24px.svg",
 		"icons/ic_delete_forever_black_24px.svg",
-		createYT,DelYT,appYTAlarm);
+		createYT,DelYT,appYTAlarm
+	);
 }
 function enableYTAddAlarm()
 {
@@ -28,28 +29,15 @@ function createYT(cid,vid)
 }
 function onPlayerReady(e)
 {
-	e.target.mute()
-	e.target.playVideo();
+	var title=e.target.getVideoData().title;
+	var videoId=e.target.preID;
+	reportRecent(videoId,title);
 }
 function onPlayerStateChange(e)
 {
-	var vid=e.target.preID;
-	console.log(JSON.stringify(e.target.getVideoData()));
-	if(e.data==0)
-	{
-		e.target.seekTo(0);
-	}
-	else if(e.data==1 && e.target.isMuted())
-	{
-		e.target.pauseVideo();
-		e.target.unMute();
-		e.target.seekTo(0);
-		reportRecent(vid,true,e.target.getVideoData().title);
-	}
-	else if(e.data==-1 && AutoEnable)
-	{
-		mediaList_removeMedia(e.target.getIframe().parentNode.id);
-		reportRecent(vid,false,"");
+	if (e.data == YT.PlayerState.ENDED) {
+		e.target.seekTo(0,false);
+		e.target.playVideo();
 	}
 }
 function DelYT(cid)

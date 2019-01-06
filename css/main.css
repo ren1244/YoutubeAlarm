@@ -52,6 +52,14 @@ body{
 #recent,#alarm,#music{
 	text-align:left;
 }
+#recent li{
+	font-size:14px;
+	cursor:pointer;
+	padding-bottom:7px;
+}
+#recent li:hover{
+	color:blue;
+}
 #music{
 	padding-left:20px;
 }

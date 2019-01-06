@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>456</title>
+	<script src="https://www.youtube.com/iframe_api" type="text/javascript"></script>
+</head>
+<body>
+	<script type="text/javascript">
+		var player;
+		function youtubeLoadAndPlay(bt){
+			bt.parentElement.removeChild(bt);
+			var bb=document.createElement('button');
+			bb.inneHTML="play";
+			bb.onclick=function(){
+				player.playVideo();
+			}
+			document.body.appendChild(bb);
+			//載入player
+			player = new YT.Player('player', {
+				height: '390',
+				width: '640',
+				videoId: 'SL5RdSUMvcY',
+				events: {
+					/*'onReady':function(event){
+						event.target.playVideo();
+					},*/
+					'onStateChange':function(e){
+						console.log(e.data);
+						if (e.data == YT.PlayerState.ENDED) {
+							e.target.seekTo(0,false);
+							e.target.playVideo();
+						}
+					}
+				}
+			});
+			
+		}
+	</script>
+	<div id="player"></div><button onclick="youtubeLoadAndPlay(this);">run</button>
+</body>
+</html>

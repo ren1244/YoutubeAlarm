@@ -25,11 +25,11 @@ function createMus(cid,info)
 }
 function appMusAlarm(cid)
 {
-	if(!AutoEnable)
+	/*if(!AutoEnable)
 	{
 		alert("無法設定鬧鐘，您的瀏覽器可能禁用了自動撥放！");
 		return;
-	}
+	}*/
 	var p=document.getElementById(cid);
 	timeDialog(function (dat,pNode){
 		listAlarm.appendAlarm(dat,pNode.info_title,function (x){
