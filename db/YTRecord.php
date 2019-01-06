@@ -110,18 +110,3 @@ SQLSTAT;
         return true;
     }
 }
-
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 

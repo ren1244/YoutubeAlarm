@@ -1,35 +1,37 @@
 <?php
 /**
- * 提供 api 接口，操作 db\YTRecord
+ * 提供 api 接口，操作 db\YTRecord，目前提供給前端的API見下列說明
  * 
  * @version 0.1.0
  * @author ren1244 n1244506804@gmail.com
- */ 
+ */
+
+/** 
+ * [GET] 取得資料
+ *
+ * @return josn 最近5筆資料
+ */
+
+/** 
+ * [POST] 增加新資料
+ *
+ * @param string vid youtube影片的id
+ * @param string title youtube影片的標題
+ * @return josn|httpCode [status:'ok'] 或 httpCode
+ */
+
+/** 
+ * [POST] 刪除資料
+ *
+ * @param string _method 值為DELETE，以辨識這是DELTE方法
+ * @param string rid record id
+ * @return josn|httpCode [status:'ok'] 或 httpCode
+ */
+
 session_start();
 $_SESSION['uid']=1; //還沒實做使用者
-
-/** 
- * [CREATE]新增資料
- *
- * @param string url 影片超連結
- * @return bool 成功或失敗
- */
-
-/** 
- * [READ]讀取資料
- *
- * @return array 最近5筆資料
- */
-
-/** 
- * [DELETE]新增資料
- *
- * @param int rid 紀錄ID
- * @return bool 成功或失敗
- */
-
  
-//辨識 http 方法
+//辨識 http 方法：分為 GET, POST, DELETE
 $method=$_SERVER['REQUEST_METHOD'];
 if($method!=='GET' && $method!=='POST') {
     http_response_code(400);
@@ -46,14 +48,14 @@ if($method==='POST' && isset($_POST['_method'])) {
 }
 
 //未登入過濾
-
 if(!isset($_SESSION['uid'])) {
     http_response_code(403);
     exit('<h1>Forbidden</h1>');
 }
 
-//參數過濾
+//csrf_token 過濾(等實作使用者再來處理)
 
+//參數過濾
 function verifyId($x){
     return is_numeric($x) && is_int((int)$x);
 }
@@ -89,13 +91,17 @@ if(!$filterFunc[$method]()) {
 }
 
 //連接資料庫
+require_once(__dir__ .'/../config.php');
 try {
-    $pdo=new PDO('mysql:host=localhost;dbname=test6','test6','test6');
-    //$pdo=new PDO('mysql:host=localhost;dbname=ren1244_demo','ren1244_demo','d0l7NzpKbk8UxlAI');
+    $pdo=new PDO(
+        'mysql:host='.$cfg_db['host'].';dbname='.$cfg_db['dbname'],
+        $cfg_db['user'],
+        $cfg_db['password']
+    );
 } catch(PDOException $e) {
     exit('error:'.$e);
 }
-require_once(__dir__ .'/../db/main.php');
+require_once(__dir__ .'/../db/dbClassLoader.php');
 $db=new YTRecord($pdo);
 
 //資料庫存取

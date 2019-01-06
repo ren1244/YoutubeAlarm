@@ -1,7 +1,7 @@
 function refreshRecent()
 {
 	var xhr=new XMLHttpRequest();
-	xhr.open("GET","api/YTRecord.php");
+	xhr.open("GET","api/YTRecordAPI.php");
 	xhr.onreadystatechange =function(e)
 	{
 		if(this.readyState==4)
@@ -32,7 +32,7 @@ function refreshRecent()
 function reportRecent(id,title)
 {
 	var xhr=new XMLHttpRequest();
-	xhr.open("POST","api/YTRecord.php");
+	xhr.open("POST","api/YTRecordAPI.php");
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhr.onreadystatechange =function(e)
 	{
