@@ -16,7 +16,7 @@ class YTRecord extends DBAccess
     public function init()
     {
         $sql=<<<SQLSTAT
-          CREATE OR REPLACE TABLE YTRecord (
+          CREATE TABLE YTRecord (
              `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
              `uid` INT UNSIGNED NOT NULL,
              `title` varchar(512) NOT NULL,

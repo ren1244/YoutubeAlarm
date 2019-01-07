@@ -11,7 +11,7 @@ function initAutoStatus()
 
 function init()
 {		
-	listAlarm=new alarmList("alarm","icons/ic_delete_forever_black_24px.svg","svg_clock");
+	listAlarm=new alarmList("alarm","imgs/ic_delete_forever_black_24px.svg","svg_clock");
 	initYTDiv();
 	initMusicDiv();
 	initAutoStatus();

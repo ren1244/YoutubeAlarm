@@ -4,8 +4,8 @@ function initMusicDiv()
 {
 	listMusic=new mediaList(
 		"music",
-		"icons/ic_alarm_add_black_24px.svg",
-		"icons/ic_delete_forever_black_24px.svg",
+		"imgs/ic_alarm_add_black_24px.svg",
+		"imgs/ic_delete_forever_black_24px.svg",
 		createMus,null,appMusAlarm);
 }
 function enableMusAddAlarm()
