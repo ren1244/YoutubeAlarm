@@ -2,8 +2,9 @@
 /**
  * 資料表 YTRecord 存取
  * 
- * @version 0.1.0
+ * @version 0.1.1
  * @author ren1244 n1244506804@gmail.com
+ * @since 0.1.1 2019/01/08 ren1244: 使用DBAccess的方法，減少直接 sql_execute
  */
 
 class YTRecord extends DBAccess
@@ -40,16 +41,14 @@ SQLSTAT;
      */
     public function create($uid, $title, $vid)
     {
-        $stat=$this->sql_execute(
-            'DELETE FROM YTRecord WHERE `uid`=:? AND `vid`=:?',
-            [$uid, $vid]
-        );
+        $this->table('YTRecord')
+             ->where('uid',$uid)
+             ->where('vid',$vid)
+             ->delete();
         
-        $stat=$this->sql_execute(
-            'INSERT INTO YTRecord(`uid`,`title`,`vid`) VALUE(:?, :?, :?)',
-            [$uid, $title, $vid]
-        );
-        if($stat === false || $stat->rowCount() === 0) {
+        $r=$this->table('YTRecord')
+                ->insert(['uid'=>$uid, 'title'=>$title, 'vid'=>$vid]);
+        if($r === false || $r === 0) {
             return false;
         }
         return true;
@@ -65,28 +64,16 @@ SQLSTAT;
      */
     public function read($uid=NULL, $nStart=NULL, $nCount=NULL)
     {
-        $arr=[];
-        $sql='SELECT * FROM YTRecord';
+        $this->table('YTRecord');
         if(!is_null($uid)) {
-           $sql.=' WHERE `uid`=:?';
-           $arr[]=$uid;
+             $this->where('uid',$uid);
         }
-        $sql.=' ORDER BY `id` DESC';
         if(!is_null($nCount) && !is_null($nStart)) {
-           $sql.=' LIMIT :?,:?';
-           $arr[]=$nStart;
-           $arr[]=$nCount;
+            $this->limit($nCount,$nStart);
         }
-        $stat=$this->sql_execute($sql,$arr);
-        if($stat === false) {
-            echo '[A:'.$this->err.']';
-            var_dump($sql);
-            var_dump($arr);
-           return false;
-        }
-        $r=$stat->fetchALL(PDO::FETCH_ASSOC);
-        if($r===false) {
-           return false;
+        $r=$this->order('-id')->select();
+        if($r===false){
+            return false;
         }
         return $r;
     }
@@ -100,11 +87,11 @@ SQLSTAT;
      */
     public function remove($uid, $rid)
     {
-        $stat=$this->sql_execute(
-            'DELETE FROM YTRecord WHERE `uid`=:? AND `id`=:?',
-            [$uid,$rid]
-        );
-        if($stat===false || $stat->rowCount()===0){
+        $r=$this->table('YTRecord')
+                ->where('uid',$uid)
+                ->where('id',$rid)
+                ->delete();
+        if($r===false || $r===0){
             return false;
         }
         return true;
