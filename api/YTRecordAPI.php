@@ -2,14 +2,15 @@
 /**
  * 提供 api 接口，操作 db\YTRecord，目前提供給前端的API見下列說明
  * 
- * @version 0.1.0
+ * @version 1.1.0
  * @author ren1244 n1244506804@gmail.com
+ * @since 0.1.0 [GET]取得資料回傳格式改變，同時新增回傳「最熱門」
  */
 
 /** 
  * [GET] 取得資料
  *
- * @return josn 最近5筆資料
+ * @return josn {'new':最近5筆資料,'hot':最熱門5筆資料}
  */
 
 /** 
@@ -106,13 +107,18 @@ $db=new YTRecord($pdo);
 
 //資料庫存取
 $dbAccessFunc['GET']=function($db){
-    $r=$db->read((int)$_SESSION['uid'],0,5);
+    $r=$db->read((int)$_SESSION['uid'],0,5); //最近
     if($r===false) {
         http_response_code(500);
         exit('<h1>Internal Server Error</h1>');
     }
+    $r2=$db->read((int)$_SESSION['uid'],0,5,true); //熱門
+    if($r2===false) {
+        http_response_code(500);
+        exit('<h1>Internal Server Error</h1>');
+    }
     header('Content-Type: application/json; charset=utf-8');
-    echo json_encode($r);
+    echo json_encode(['new'=>$r,'hot'=>$r2]);
 };
 
 $dbAccessFunc['POST']=function($db){

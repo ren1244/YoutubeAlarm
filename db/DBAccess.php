@@ -2,8 +2,9 @@
  /**
   * 作為基本的 class，提供一些簡單的方法
   * 
-  * @version 0.1.0
+  * @version 0.1.1
   * @author ren1244
+  * @since 0.1.0 2019/01/08 ren1244: 修正多個欄位排序SQL語法錯誤
   */
  
  class DBAccess
@@ -161,7 +162,7 @@
             $sql.=' WHERE '.implode(' AND ',$this->whereCond);
         }
         if(count($this->orderArr)){
-            $sql.=' ORDER BY '.implode(' ',$this->orderArr);
+            $sql.=' ORDER BY '.implode(', ',$this->orderArr);
         }
         if($this->nLimit>0){
             $sql.=' LIMIT '.$this->nStart.','.$this->nLimit;

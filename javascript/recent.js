@@ -6,17 +6,26 @@ function refreshRecent()
 	{
 		if(this.readyState==4)
 		{
-			var R=document .getElementById("recent");
-			R.innerHTML="";
+			var recent=document .getElementById("recent");
+			var hot=document .getElementById("hot");
+			recent.innerHTML="";
+			hot.innerHTML="";
 			if(this.status==200)
 			{
 				var A=JSON.parse(this.responseText);
-				A.forEach(function (val,idx){
+				A['new'].forEach(function (val,idx){
 					var p=document.createElement("li");
 					p.textContent=val['title'];
 					p.setAttribute('data-vid',val['vid']);
 					p.addEventListener('click',onClickRecent);
-					R.appendChild(p);
+					recent.appendChild(p);
+				});
+				A['hot'].forEach(function (val,idx){
+					var p=document.createElement("li");
+					p.textContent=val['title']+' ('+val['hit']+')';
+					p.setAttribute('data-vid',val['vid']);
+					p.addEventListener('click',onClickRecent);
+					hot.appendChild(p);
 				});
 			}
 			else
